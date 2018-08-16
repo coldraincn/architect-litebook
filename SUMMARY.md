@@ -2,9 +2,9 @@
 
 * [Introduction](README.md)
 * [数据结构](DataStructure/README.md)
+    * [链表、数组](DataStructure/LinkedList.md)
     * [队列](DataStructure/Queue.md)
     * [集合](DataStructure/Set.md)
-    * [链表、数组](DataStructure/LinkedList.md)
     * [字典、关联数组](DataStructure/Map.md)
     * [栈](DataStructure/Stack.md)
     * [树](DataStructure/Tree/README.md)
