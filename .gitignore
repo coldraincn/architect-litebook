@@ -1,2 +1,8 @@
 # Ignore everything in the directory "bin" 
 bin/*
+
+/code/build/*
+/code/bin/*
+/code/.gradle/*
+/code/.settings/*
+/.vscode/

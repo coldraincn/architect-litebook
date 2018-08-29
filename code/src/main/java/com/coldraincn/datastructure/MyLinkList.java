@@ -1,18 +1,7 @@
-# 链表、数组
+package com.coldraincn.datastructure;
 
-### 定义
->链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。
+import java.util.Iterator;
 
-### 图例（单链表）
-![链表](images/danlianbiao.png)
-
-### 结构
-1. 存储数据的域
-2. 指向下个节点的指针
-
-### 单链表
-
-```java
 public class MyLinkList<T> implements Iterable<T>{
     //node内部类
     private  class Node{
@@ -73,35 +62,11 @@ public class MyLinkList<T> implements Iterable<T>{
            
         }
     } 
-    public static void main(String[] args){
-            MyLinkList<String> list = new MyLinkList<>();
-            list.add("aa");
-            list.add("bb");
-            list.add("cc");
-            for(String value : list){
-                System.out.println(value);
-            }
-            System.out.println("===========remove");
-            list.remove();
-            for(String value : list){
-                System.out.println(value);
-            }
+    public void reverse(){
+        this.head=reverse(this.head);
     }
-```
-运行：
-```bash
-> Task :run
-cc
-bb
-aa
-===========remove
-bb
-aa
-```
-
-### 反转单链表
-``` java
- private Node reverse(Node node){
+    //反转列表
+    private Node reverse(Node node){
         Node nextNode=node;
         Node headNode=null;
         while(nextNode!=null){
@@ -112,34 +77,23 @@ aa
         }
         return headNode;
     }
-```
-参数为传入的头节点，nextNode表示要进行反转的节点，headNode表示已经反转的头节点
-
-运行
-```bash
-dd
-cc
-cc
-bb
-aa
-===========reverse
-aa
-bb
-cc
-cc
-dd
-```
-
-### 双向链表
-```java
-private  class Node{
-        T t;
-        Node pre
-        Node next;
-        Node(T t,Node pre,Node next){
-            this.t=t;
-            this.pre=pre;
-            this.next=next;
-        }
+    public static void main(String[] args){
+            MyLinkList<String> list = new MyLinkList<>();
+            list.add("aa");
+            list.add("bb");
+            list.add("cc");
+            
+            System.out.println("===========remove");
+            //list.remove();
+            list.add("cc");
+            list.add("dd");
+            for(String value : list){
+                System.out.println(value);
+            }
+            System.out.println("===========reverse");
+            list.reverse();
+            for(String value : list){
+                System.out.println(value);
+            }
     }
- ```
+}
