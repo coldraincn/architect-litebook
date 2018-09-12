@@ -9,8 +9,8 @@ public class MyQueue<T> implements Iterable<T>{
             this.next=next;
         }
     }
-    private Node head;
-    private Node tail;
+    private Node head=new Node(null,null);;
+    private Node tail=new Node(null,null);;
     private int size=0;
     public int Size(){
         return size;
@@ -40,14 +40,48 @@ public class MyQueue<T> implements Iterable<T>{
         head.next=node.next;
         if(size==1){
             tail.next=null;
+
         }
-        return node.t;
         size--;
+        return node.t;
+        
     }
     public Iterator iterator(){
         return new MyIterator();
     }
     public class MyIterator implements Iterator<T>{
+        Node node=head.next;
+        @Override
+        public boolean hasNext(){
+            return node!=null;
+        }
+
+        @Override
+        public T next(){
+            if(node!=null){
+                T vaule=node.t;
+                node=node.next;
+                return vaule;
+            }
+            return null;
+
+        }
+        
         
     }
+    public static void main(String[] args){
+        MyQueue<String> list = new MyQueue<>();
+        list.enqueue("aa");
+        list.enqueue("bb");
+        list.enqueue("cc");
+        
+        System.out.println("===========remove");
+        String dvalue = list.dequeue();
+        System.out.println(dvalue);
+        System.out.println("===========remove");
+        for(String value : list){
+            System.out.println(value);
+        }
+       
+}
 }
