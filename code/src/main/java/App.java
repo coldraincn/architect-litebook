@@ -5,8 +5,18 @@ public class App {
     public String getGreeting() {
         return "Hello world.";
     }
+    public int ii=3;
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        
+        App node1=new App();
+        System.out.println("node1:"+node1.ii);
+        App node2=node1;
+        System.out.println("node2:"+node2.ii);
+        node2.ii=9;
+        System.out.println("node1:"+node1.ii);
+        node2=null;
+        System.out.println("node1:"+node1.ii);
+        
     }
 }
