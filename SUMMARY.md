@@ -18,4 +18,6 @@
     * [BitSet](DataStructure/BitSet.md)
 * [操作系统](OS/README.md)
     * [概念](OS/concept.md)
+    * [物理内存管理](OS/physicalMemory.md)
+    * [虚拟内存管理](OS/virtualMemory.md)
 
