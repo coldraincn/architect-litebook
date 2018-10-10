@@ -20,4 +20,8 @@
     * [概念](OS/concept.md)
     * [物理内存管理](OS/physicalMemory.md)
     * [虚拟内存管理](OS/virtualMemory.md)
+    * [进程线程管理](OS/processAndThread.md)
+    * [处理器调度](OS/schedule.md)
+    * [并发](OS/cincurrency.md)
+    * [IO](OS/IO.md)
 
