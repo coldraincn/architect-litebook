@@ -10,8 +10,8 @@
     * [树](DataStructure/Tree/README.md)
         * [二叉树](DataStructure/Tree/BinaryTree.md)
         * [完全二叉树](DataStructure/Tree/CompleteBinaryTree.md)
-        * [平衡二叉树](DataStructure/Tree/BalanceBinaryTree.md)
         * [二叉树查找树](DataStructure/Tree/BinarySearchTree.md)
+        * [平衡二叉树](DataStructure/Tree/BalanceBinaryTree.md)
         * [红黑树](DataStructure/Tree/RedBlackTree.md)
         * [B-，B+，B*树](DataStructure/Tree/BTree.md)
         * [LSM 树](DataStructure/Tree/LSMTree.md)
@@ -22,6 +22,6 @@
     * [虚拟内存管理](OS/virtualMemory.md)
     * [进程线程管理](OS/processAndThread.md)
     * [处理器调度](OS/schedule.md)
-    * [并发](OS/cincurrency.md)
+    * [并发](OS/concurrency.md)
     * [IO](OS/IO.md)
 
