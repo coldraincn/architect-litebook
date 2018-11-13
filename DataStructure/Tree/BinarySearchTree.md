@@ -7,6 +7,24 @@
 > 4. 没有健值相等的节点
 ## 图例
 ![二叉搜索树](../images/bst.png)
+## 构建
+```java
+public class BST<Key extends Comparable<Key>,Value>{
+    private Node root;
+    private class Node{
+        private Key key;//键
+        private Value value;//值
+        private Node left;//左子树
+        private Node right;//右子树
+        private int N;//该节点子树中节点个数，包括该节点
+        public Node(Key key,Value value,int N){
+            this.key=key;
+            this.value=value;
+            this.N=N;
+        }
+    }
+}
+```
 ## 查找
 根据定义左子树的值都小于它的根结点，右子树的值都大于它的根结点，当查询一个值时，从根结点开始：  
 1. 如果根结点的值等于查询的值，则返回根结点；
@@ -16,5 +34,35 @@
 ### 示例
 1. 成功查找示例：查询值为4，先从根结点开始，根结点的值为8，大于4；则查询左子树，左子树根结点值为3，小于4；查询右子树，右子树根结点值为6，大于4；查询左子树，根结点值为4，等于查询的值，返回该节点。
 2. 失败查找示例：查询值为15，先从根结点开始，根结点值为8，小于15；则查询右子树，右子树根结点值为10，小于15；则查询右子树，根结点值为14，小于15；继续查询右子树，右子树为null，没有查到，返回null
+### 代码
+```java
+public Value get(Key key){
+    return get(root,key)
+}
+private Value get(Node x,Key key){
+    if(x==null){
+        return null;
+    }
+    int cmp = key.compareTo(x.key);
+    if(cmp>0){
+        return get(x.right,key);
+    }else if(cmp<0){
+        return get(x.left,key);
+    }else{
+        return x.value;
+    }
+
+}
+```
+## 插入
+与查找类似，先进行查找，找到该值，则替换；没有该值，则在最后返回null处插入该值形成的节点
+```java
+public void put(Key key){
+    put(root,key);
+}
+private void put(Node x,Key key){
+    
+}
+```
 
 
