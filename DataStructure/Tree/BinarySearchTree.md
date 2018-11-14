@@ -57,11 +57,46 @@ private Value get(Node x,Key key){
 ## 插入
 与查找类似，先进行查找，找到该值，则替换；没有该值，则在最后返回null处插入该值形成的节点
 ```java
-public void put(Key key){
-    put(root,key);
+public void put(Key key,Value value){
+    root = put(root,key,value);
 }
-private void put(Node x,Key key){
-    
+private Node put(Node x,Key key,Value value){
+    if(x==null){
+        return new Node(key,value,1);
+    }
+    int cmp = key.compareTo(x.key);
+    if(cmp>0){
+        x.right = put(x.right,key,value);
+    }else if(cmp<0){
+        x.left = put(x.left,key,value);
+    }else{
+        x.value=value;
+    }
+    x.N=(x.left==null?0:x.left.N)+(x.right==null?0:x.right.N)+1;
+    return x
+}
+```
+## 最大最小值
+![最大最小值](../images/bstminmax.png)  
+通过上图可以看出，最小值为该bst递归左子树获取的最左节点；最大值为该bst递归右子树获取的最右节点。
+```java
+public Value min(){
+    return min(root).value;
+}
+private Node min(Node x){
+    if(x.left==null){
+        return x;
+    }
+    return min(x.left);
+}
+public Value max(){
+    return max(root).value;
+}
+private Node max(Node x){
+    if(x.right==null){
+        return x;
+    }
+    return max(x.right);
 }
 ```
 
