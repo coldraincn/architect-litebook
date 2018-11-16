@@ -99,5 +99,31 @@ private Node max(Node x){
     return max(x.right);
 }
 ```
+## 向上取整向下取整
+如果给定键小于根结点，那么，小于等于该键的最大值（floor）在根结点的左子树中；如果给定的键大于根结点，那么，只有左子树中存在小于给定键的时候才存在floor，否则根结点就是floor。这段说明了floor方法的递归实现，同时也递归的证明了它能够计算出预期结果。将“左”变成“右”，“小于”换成“大于”便能得到ceiling方法。   
+*参考《算法》第四版3.2.3.2*
+```java
+public Node floor(Key key){
+    return floor(root,key);
+}
+private Node floor(Node x,Key key){
+    if(x==null){
+        return null;
+    }
+    int cmp=key.compareTo(x.key);
+    if(cmp==0){
+        return x;
+    }else if(cmp<key){
+        return floor(x.left,key);
+    }else{
+        Node t = floor(x.right,key);
+        if(t!=null){
+            return t;
+        }else{
+            return x;
+        }
+    }
+}
+```
 
 
