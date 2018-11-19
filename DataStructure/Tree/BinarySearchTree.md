@@ -125,5 +125,24 @@ private Node floor(Node x,Key key){
     }
 }
 ```
+## 删除
+### 删除最大最小
+删除key最小节点，依次递归左子树，直到遇到一个空链接(null)，选择指向该空链接的节点node1，令node1的父节点指向node1的右子树(只需在递归调用中返回node1的右子树）。此时已经没有任何链接指向node1，nide1会被垃圾回收。删除最大值同理。
+```java
+public void deleteMin(){
+    root = deleteMin(root);
+}
+private Node deleteMin(Node x){
+    if(x.left==null){
+        return x.right;
+    }
+    x.left=deleteMin(x.left);
+    x.N=size(x.left)+size(x.right)+1;
+    return x
+
+}
+```
+### 普通删除
+
 
 
