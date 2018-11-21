@@ -151,6 +151,8 @@ private Node deleteMin(Node x){
     3. 将x的右链接指向deleteMin(t.rifgt);
     4. 将x的做链接设为t.left
 
+![删除](../images/bstdelete.png)
+
 ```java
 public void delete(Key key){
     root = delete(root,key)
