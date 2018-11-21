@@ -14,7 +14,7 @@ public class MyLinkList<T> implements Iterable<T>{
     }
     //大小
     private int size = 0;
-    //头节点
+    //头结点
     private Node head;
     public void add(T t){
         Node node=new Node(t,null);

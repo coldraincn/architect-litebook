@@ -8,7 +8,7 @@
 
 ### 结构
 1. 存储数据的域
-2. 指向下个节点的指针
+2. 指向下个结点的指针
 
 ### 单链表
 
@@ -25,7 +25,7 @@ public class MyLinkList<T> implements Iterable<T>{
     }
     //大小
     private int size = 0;
-    //头节点
+    //头结点
     private Node head;
     public void add(T t){
         Node node=new Node(t,null);
@@ -113,7 +113,7 @@ aa
         return headNode;
     }
 ```
-参数为传入的头节点，nextNode表示要进行反转的节点，headNode表示已经反转的头节点
+参数为传入的头结点，nextNode表示要进行反转的结点，headNode表示已经反转的头结点
 
 运行
 ```bash
