@@ -188,4 +188,7 @@ private Node delete(Node x,Key key){
     return x;
 }
 ```
-
+## 分析
+二叉查找树的运行时间和树的形状有关，树的形状又和插入元素的顺序有关。在最好的情况下，节点完全平衡，从根节点到最底层叶子节点只有lgN个节点。在最差的情况下，根节点到最底层叶子节点会有N各节点。在一般情况下，树的形状和最好的情况接近。
+对于N个不同元素，随机插入的二叉查找树来说，其平均查找/插入的时间复杂度大约为2lnN
+*http://www.cnblogs.com/yangecnu/p/Introduce-Binary-Search-Tree.html*
