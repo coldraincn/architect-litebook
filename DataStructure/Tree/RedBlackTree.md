@@ -34,7 +34,7 @@
 ## 红黑树
 ### 定义
 >红黑树的一种定义是含有红黑链接并满足下列条件的二叉查找树
->* 红链接均为做链接
+>* 红链接均为左链接
 >* 没有任何一个结点同时和两条红链接相连
 >* 该树是完美黑色平衡的，即任意空链接到根结点的路径上的黑链接数量相同
 ### 与2-3树关系
@@ -67,5 +67,39 @@ private boolean isRed(Node x){
     return x.color==RED;
 }
 ```
+### 旋转
+实现的某些操作中可能会出现红色右链接或者两条连续的红链接，但在操作完成前这些情况都会被小心的旋转并修复。旋转操作会改变红链接的指向。假设有一条红色的右链接需要被转化为左链接，这个操作称为左旋转。大体思路是将两个键中的较小者作为根节点变为较大者作为根结点。实现降一个红色左链接转换为一个红色右链接的一个右旋转的代码完全相同，只需要调换left和right即可。
+```java
+Node rotateLeft(Node h){
+    Node x = h.left;
+    h.right = x.left;
+    x.left = h;
+    x.color = h.color;
+    h.color = RED;
+    x.N = h.N;
+    h.N=1+size(h.left)+size(h.right);
+    return x;
+}
+Node rotateRight(Node h){
+    Node x = h.left;
+    h.left = x.right;
+    x.right = h;
+    x.color=h.color;
+    h.color=RED;
+    x.N=h.N;
+    h.N=1+size(h.right)+size(h.left);
+    return x;
+}
+```
+*左旋转*
+![坐旋转1](../images/rotateleft1.png)
+*左旋转结果*
+![左旋转2](../images/rotateleft2.png)
+*右旋转*
+![右旋转1](../images/rotateright1.png)
+*右旋转结果*
+![右旋转2](../images/rotateright2.png)
 
-
+### 旋转后重置父节点的链接
+无论左旋转还是右旋转，旋转操作都会返回一条链接，总会用旋转的两个方法的返回值重置父结点中相应的链接。
+### 向2-结点中插入新键
