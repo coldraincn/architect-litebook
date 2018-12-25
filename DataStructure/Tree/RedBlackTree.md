@@ -134,8 +134,39 @@ Node rotateRight(Node h){
  前面讨论的三种情况都会出现，根据不同情况进行旋转以及颜色转换。颜色转换会使到中结点的链接变红，相当于把它送入到了父结点。意味着父结点中继续插入一个新键。
  ![向底部的3-结点插入新键](../images/3-nodefloor.png)
  ### 将红链接在树中向上传递
- 2-3树中的插入算法需要我们分解3-结点，将中间键插入父结点，如此这般直到遇到一个2-结点或者根结点。我们所考虑过的所有情况都正是为了达成这个目标：每次必要的旋转之后我们都会进行颜色转换，使得中结点变红，在父结点看来，处理这样的一个红色结点的方式和处理一个新插入的红色结点完全相同，即继续把红链接转移到中结点上去。在沿着插入点到根结点的路径向上移动时所经过的每个结点中顺序完成一下操作，就能完成插入操作：
+ 2-3树中的插入算法需要我们分解3-结点，将中间键插入父结点，如此这般直到遇到一个2-s
  * 如果右子结点是红色而左子结点是黑色的，进行左旋转
  * 如果左子结点是红色的且它（左子结点）的左子结点也是红色的，进行右旋转
  * 如果左右子结点均为红色，进行颜色转换
  ![红链接向上传递](../images/rbtup.png)
+ ### 插入算法实现
+ ```java
+ public void put(Key key,Value){
+     root = put(root,key,val);
+     root.color = BLACK;
+ }
+ private Node put(Node h,Key key,Value val){
+     if(h==null){
+         return new Node(key,val,1,RED);
+     }
+     int cmp = key.compareTo(h.key);
+     if(cmp<0){
+         h.left = put(h.left,key,val);
+     }else if(cmp>0){
+         h.right = put(h.right,key,val);
+     }else{
+         h.val = val;
+     }
+     if(isRed(h.right) && !isRed(h.left)){
+         h = rotateLeft(h);
+     }
+     if(isRed(h.left) && isRed(h.left.left)){
+         h = rotateRight(h);
+     }
+     if(isRed(h.left) && isRed(h.right)){
+         flipColors(h);
+     }
+     h.N = size(h.left) + size(h.right) + 1;
+     return h;
+ }
+ ```
