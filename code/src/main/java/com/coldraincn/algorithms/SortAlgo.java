@@ -40,13 +40,39 @@ public class SortAlgo{
     }
     //原地归并排序
     private static Comparable[] aux;
-    public static void MergeSort(Comparable[] a){
+    public static void Sort(Comparable[] a){
         aux = new Comparable[a.length];
-        MergeSort(a,0,a.length-1);  
+        Sort(a,0,a.length-1);  
     }
-    private static void MergeSort(Comparable[] a,int lo,int hi){
-        
+    private static void Sort(Comparable[] a,int lo,int hi){
+        if(lo>=hi){
+            return;
+        }
+        int mid = lo+(hi-lo)/2;
+        Sort(a,lo,mid);
+        Sort(a,mid+1,hi);
+        Merge(a,lo,mid,hi);     
+    }
+    private static void Merge(Comparable[] a,int lo,int mid,int hi){
+        int i = lo;
+        int j = mid+1;
+        for(int k = lo;k<=hi;k++){
 
+            aux[k] = a[k];
+        }
+        for(int k = lo;k<=hi;k++){
+            if(i>mid){
+                a[k] = aux[j++];
+            }else if(j>hi){
+                a[k] = aux[i++];
+            }else if(less(aux[i],aux[j])){
+                a[k] = aux[i++];
+            }else{
+                a[k] = aux[j++];
+            }
+        }
+        
+        
     }
     private static boolean less(Comparable v,Comparable w){
         return v.compareTo(w)<0;
@@ -72,7 +98,7 @@ public class SortAlgo{
     public static void main(String[] args){
         Integer[] a={3,6,8,2,5,0,7};
         //SortAlgo sort = new SortAlgo();
-        HillSort(a); 
+        Sort(a); 
         show(a);
     }
 }
