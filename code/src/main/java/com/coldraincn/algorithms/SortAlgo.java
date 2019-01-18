@@ -1,6 +1,15 @@
 package com.coldraincn.algorithms;
 
+import java.util.Random;
+
 public class SortAlgo{
+    private static Random random;    // pseudo-random number generator
+    private static long seed;
+    static {
+        // this is how the seed was set in Java 1.4
+        seed = System.currentTimeMillis();
+        random = new Random(seed);
+    }
     //选择排序
     public static void SelectionSort(Comparable[] a){
         for(int i = 0;i<a.length;i++){
@@ -70,10 +79,55 @@ public class SortAlgo{
             }else{
                 a[k] = aux[j++];
             }
-        }
-        
-        
+        }     
     }
+    //快速排序
+    public static void QuickSort(Comparable[] a){
+        shuffle(a);
+        QuickSort(a,0,a.length-1);
+    }
+    private static void QuickSort(Comparable[] a,int lo,int hi){
+        if(hi<=lo){
+            return;
+        }
+        int j = partition(a,lo,hi);
+        QuickSort(a,lo,j-1);
+        QuickSort(a,j+1,hi);      
+    }
+    private static int partition(Comparable[] a,int lo,int hi){
+        int i = lo;
+        int j = hi+1;
+        Comparable v = a[lo];
+        while(true){
+            while(less(a[++i],v)){
+                if(i>=hi){
+                    break;
+                }
+            }
+            while(less(v,a[--j])){
+                if(j<=lo){
+                    break;
+                }
+            }
+            if(i>=j){
+                break;
+            }
+            exch(a,i,j);
+        }
+        exch(a,j,lo);
+        return j;    
+
+    }
+    private static void shuffle(Object[] a){
+        int n = a.length;
+        for(int i = 0;i<n;i++){
+            int r = i+random.nextInt(n-i);
+            Object temp = a[i];
+            a[i] = a[r];
+            a[r] = temp;
+        }
+    }
+
     private static boolean less(Comparable v,Comparable w){
         return v.compareTo(w)<0;
     }
@@ -98,7 +152,7 @@ public class SortAlgo{
     public static void main(String[] args){
         Integer[] a={3,6,8,2,5,0,7};
         //SortAlgo sort = new SortAlgo();
-        Sort(a); 
+        QuickSort(a); 
         show(a);
     }
 }
